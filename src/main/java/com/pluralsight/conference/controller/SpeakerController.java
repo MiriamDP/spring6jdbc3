@@ -24,7 +24,7 @@ public class SpeakerController {
     public Speaker createSpeaker(@RequestBody Speaker speaker) {
 
         System.out.println("Name: "+speaker.getName());
-        return null;
+        return speakerService.create(speaker);
     }
 
     @GetMapping("/speaker")
