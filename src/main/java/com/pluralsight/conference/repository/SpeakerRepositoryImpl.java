@@ -1,6 +1,8 @@
 package com.pluralsight.conference.repository;
 
 import com.pluralsight.conference.model.Speaker;
+
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,6 +10,12 @@ import java.util.List;
 
 @Repository("speakerRepository")
 public class SpeakerRepositoryImpl implements SpeakerRepository {
+
+    private JdbcTemplate jdbcTemplate;
+
+    public SpeakerRepositoryImpl(JdbcTemplate jdbc){
+        this.jdbcTemplate=jdbc;
+    }
 
     public List<Speaker> findAll() {
         Speaker speaker = new Speaker();
@@ -20,6 +28,10 @@ public class SpeakerRepositoryImpl implements SpeakerRepository {
 
     @Override
     public Speaker create(Speaker speaker) {
+
+        jdbcTemplate.update("INSERT INTO speaker (name) VALUES (?)",speaker.getName());
+
+
         return null;
     }
     
