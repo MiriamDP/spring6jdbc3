@@ -3,6 +3,7 @@ package com.pluralsight.conference.controller;
 import com.pluralsight.conference.model.Speaker;
 import com.pluralsight.conference.service.SpeakerService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class SpeakerController {
     }
 
     //no se ha puesto a nivel de controlador la ruta porque lo mismo controlamos mas recursos con este controller
-    @PutMapping("/speaker")
+    @PostMapping("/speaker")
     public Speaker createSpeaker(@RequestBody Speaker speaker) {
 
         System.out.println("Name: "+speaker.getName());
