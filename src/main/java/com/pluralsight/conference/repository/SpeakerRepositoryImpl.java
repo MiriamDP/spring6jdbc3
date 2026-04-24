@@ -4,16 +4,9 @@ import com.pluralsight.conference.model.Speaker;
 import com.pluralsight.conference.repository.util.SpeakerRowMapper;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,8 +72,15 @@ public class SpeakerRepositoryImpl implements SpeakerRepository {
         return getSpeaker(id.intValue());
     }
 
-    private Speaker getSpeaker(int id) {
+    @Override
+    public Speaker getSpeaker(int id) {
        return jdbcTemplate.queryForObject("SELECT * FROM speaker WHERE id=?", new SpeakerRowMapper(),id);
+    }
+
+    @Override
+    public Speaker update(Speaker speaker) {
+        jdbcTemplate.update("UPDATE speaker SET name=? WHERE id=?",speaker.getName(), speaker.getId());
+        return speaker;
     }
     
 }

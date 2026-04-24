@@ -2,6 +2,7 @@ package com.pluralsight.conference.service;
 
 import com.pluralsight.conference.model.Speaker;
 import com.pluralsight.conference.repository.SpeakerRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,16 @@ public class SpeakerServiceImpl implements SpeakerService {
     @Override
     public Speaker create(Speaker speaker) {
         return speakerRepository.create(speaker);
+    }
+
+    @Override
+    public Speaker getSpeaker(int id) {
+       return speakerRepository.getSpeaker(id);
+    }
+
+    @Override
+    public Speaker update(Speaker speaker) {
+        return speakerRepository.update(speaker);
     }
 
     

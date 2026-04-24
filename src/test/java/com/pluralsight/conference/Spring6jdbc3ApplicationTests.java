@@ -2,7 +2,6 @@ package com.pluralsight.conference;
 
 import com.pluralsight.conference.model.Speaker;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +42,23 @@ class Spring6jdbc3ApplicationTests {
         for (Speaker speaker : speakers) {
             System.out.println("Speaker name: " + speaker.getName());
         }
+    }
+
+    @Test
+    void testGetSpeaker(){
+        RestTemplate restTemplate = new RestTemplate();
+        Speaker speaker=restTemplate.getForObject("http://localhost:8080/speaker/{id}", Speaker.class, "226");
+        System.out.println(speaker.getName());
+
+    }
+    @Test
+    void testUpdateSpeaker(){
+        RestTemplate restTemplate = new RestTemplate();
+        Speaker speaker=restTemplate.getForObject("http://localhost:8080/speaker/{id}", Speaker.class, "226");
+        speaker.setName(speaker.getName()+" Sr");
+        restTemplate.put("http://localhost:8080/speaker", speaker);
+        
+        System.out.println(speaker.getName());
+
     }
 }
