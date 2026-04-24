@@ -82,5 +82,10 @@ public class SpeakerRepositoryImpl implements SpeakerRepository {
         jdbcTemplate.update("UPDATE speaker SET name=? WHERE id=?",speaker.getName(), speaker.getId());
         return speaker;
     }
+
+    @Override
+    public void update(List<Object[]> pairs) {
+        jdbcTemplate.batchUpdate("UPDATE speaker SET skill=? WHERE id=?", pairs);
+    }
     
 }

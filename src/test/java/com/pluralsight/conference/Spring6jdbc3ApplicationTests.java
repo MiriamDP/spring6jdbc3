@@ -61,4 +61,10 @@ class Spring6jdbc3ApplicationTests {
         System.out.println(speaker.getName());
 
     }
+    @Test
+    void testBatchUpdate(){
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.getForObject("http://localhost:8080/speaker/batch",Object.class );
+
+    }
 }

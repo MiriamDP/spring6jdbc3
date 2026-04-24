@@ -717,3 +717,7 @@ Wrong user name or password [28000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 50 more
+2026-04-24 13:23:49 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "SELECT * [*]SPRING6JDBC3.SPEAKER"
+Syntax error in SQL statement "SELECT * [*]SPRING6JDBC3.SPEAKER"; SQL statement:
+SELECT * SPRING6JDBC3.SPEAKER [42000-214]

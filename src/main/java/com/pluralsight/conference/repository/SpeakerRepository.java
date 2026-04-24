@@ -9,4 +9,5 @@ public interface SpeakerRepository {
     Speaker create(Speaker speaker);
     Speaker getSpeaker(int id);
     Speaker update(Speaker speaker);
+    void update(List<Object[]> pairs);
 }

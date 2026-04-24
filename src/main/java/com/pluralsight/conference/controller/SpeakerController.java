@@ -47,5 +47,11 @@ public class SpeakerController {
         System.out.println("Name: "+speaker.getName());
         return speakerService.update(speaker);
     }
+
+    @GetMapping("/speaker/batch")
+    public Object batch() {
+        speakerService.batch();
+        return null;
+    }
     
 }
