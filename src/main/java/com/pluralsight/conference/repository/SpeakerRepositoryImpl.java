@@ -48,33 +48,32 @@ public class SpeakerRepositoryImpl implements SpeakerRepository {
 
         //jdbcTemplate.update("INSERT INTO speaker (name) VALUES (?)",speaker.getName());
         
-        KeyHolder keyHolder=new GeneratedKeyHolder();
-        jdbcTemplate.update(new PreparedStatementCreator() {
-            @Override
-            public PreparedStatement createPreparedStatement(Connection conn) throws SQLException{
-                PreparedStatement ps=conn.prepareStatement("INSERT INTO speaker (name) VALUES (?)", new String[] {"id"});
-                ps.setString(1, speaker.getName());
-                return ps;
-            }
-        }, keyHolder);
+        // KeyHolder keyHolder=new GeneratedKeyHolder();
+        // jdbcTemplate.update(new PreparedStatementCreator() {
+        //     @Override
+        //     public PreparedStatement createPreparedStatement(Connection conn) throws SQLException{
+        //         PreparedStatement ps=conn.prepareStatement("INSERT INTO speaker (name) VALUES (?)", new String[] {"id"});
+        //         ps.setString(1, speaker.getName());
+        //         return ps;
+        //     }
+        // }, keyHolder);
 
-        Number id=keyHolder.getKey();
+        // Number id=keyHolder.getKey();
 
 
         //para hacerlo sin sql
-        // SimpleJdbcInsert insert=new SimpleJdbcInsert(jdbcTemplate);
-        // insert.setTableName("speaker");
-        // List<String> columns=new ArrayList<>();
-        // columns.add("name");
+        SimpleJdbcInsert insert=new SimpleJdbcInsert(jdbcTemplate);
+        insert.setTableName("speaker");
+        List<String> columns=new ArrayList<>();
+        columns.add("name");
 
-        // Map<String, Object> data=new HashMap<>();
-        // data.put("name", speaker.getName());
+        Map<String, Object> data=new HashMap<>();
+        data.put("name", speaker.getName());
 
-        // insert.setGeneratedKeyName("id");
+        insert.setGeneratedKeyName("id");
 
-        // Number key=insert.executeAndReturnKey(data);
+        Number id=insert.executeAndReturnKey(data);
 
-        // System.out.println(key);
 
 
         return getSpeaker(id.intValue());
